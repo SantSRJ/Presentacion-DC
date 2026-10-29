@@ -1,0 +1,834 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Presentación LGTI · Evaluación Final</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Source+Sans+3:wght@400;600;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: informe web de lectura continua. Portada azul institucional a todo el ancho; luego índice fijo a la izquierda y una columna de trabajo con mapas, gráficos y herramientas interactivas. Oro universitario solo para cifras clave; rojo y verde con significado. */
+:root{
+  --navy:#0E2245; --navy-2:#173A6E; --on-navy:#F3F6FB; --on-navy-2:#A9BAD6;
+  --bg:#F5F7FB; --paper:#FFFFFF; --ink:#0E1B33; --ink-2:#55637C; --rule:#DEE4EE; --wash:#EEF2F8;
+  --accent:#2D7FF9; --accent-soft:#E2EDFE; --gold:#E9A919; --crit:#D94636; --good:#16956C; --grey:#AAB6C9;
+  --f-display:"Archivo", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  --f-body:"Source Sans 3", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --f-mono:"IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --navy:#0B1B38; --navy-2:#17345F; --on-navy:#F3F6FB; --on-navy-2:#A9BAD6;
+  --bg:#0B1322; --paper:#111B2E; --ink:#E8EDF6; --ink-2:#A3B0C6; --rule:#25334D; --wash:#18243B;
+  --accent:#5B9BFF; --accent-soft:#1B3159; --gold:#F2BB3A; --crit:#F0705F; --good:#3CC593; --grey:#4E5E7A; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --navy:#0B1B38; --navy-2:#17345F; --on-navy:#F3F6FB; --on-navy-2:#A9BAD6;
+  --bg:#0B1322; --paper:#111B2E; --ink:#E8EDF6; --ink-2:#A3B0C6; --rule:#25334D; --wash:#18243B;
+  --accent:#5B9BFF; --accent-soft:#1B3159; --gold:#F2BB3A; --crit:#F0705F; --good:#3CC593; --grey:#4E5E7A; color-scheme:dark}
+
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth;scroll-padding-top:24px}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.5}
+h1,h2,h3,h4,p,ul,ol{margin:0} ul,ol{padding:0;list-style:none}
+button{font:inherit;color:inherit}
+.num{font-variant-numeric:tabular-nums}
+.gut{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:1240px;margin:0 auto}
+
+/* ---------- portada ---------- */
+.hero{background:var(--navy);color:var(--on-navy);position:relative;overflow:hidden}
+.hero .wrap{position:relative;padding-block:56px 40px;display:grid;gap:40px}
+.hero .ghost{position:absolute;right:-2vw;top:-4vw;font-family:var(--f-display);font-stretch:125%;font-weight:900;font-size:clamp(160px,30vw,420px);line-height:.8;color:var(--navy-2);pointer-events:none;user-select:none}
+.kick{font-family:var(--f-mono);font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--on-navy-2);display:flex;align-items:center;gap:12px}
+.kick::before{content:"";width:32px;height:3px;background:var(--gold);flex:none}
+.hero h1{font-family:var(--f-display);font-stretch:118%;font-weight:900;font-size:clamp(40px,6.4vw,84px);line-height:.95;letter-spacing:-.02em;max-width:15ch;margin-top:18px;text-wrap:balance}
+.hero h1 span{color:var(--gold)}
+.hero .intro{font-size:clamp(17px,1.6vw,20px);color:var(--on-navy-2);max-width:60ch;margin-top:20px}
+.byline{display:flex;flex-wrap:wrap;gap:8px 28px;align-items:baseline}
+.byline .who{font-family:var(--f-display);font-stretch:110%;font-weight:800;font-size:22px;color:var(--on-navy)}
+.byline span{color:var(--on-navy-2);font-size:15px}
+.strip{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid rgba(255,255,255,.16)}
+.strip .k{padding:22px 20px 4px 0;display:flex;flex-direction:column;gap:6px}
+.strip .k+.k{padding-left:20px;border-left:1px solid rgba(255,255,255,.16)}
+.strip .v{font-family:var(--f-display);font-stretch:115%;font-weight:900;font-size:clamp(30px,3.6vw,48px);line-height:1}
+.strip .l{font-size:14px;color:var(--on-navy-2);max-width:24ch}
+.v.gold{color:var(--gold)} .v.red{color:#FF8A7A} .v.green{color:#5FD3A6}
+
+/* ---------- estructura con índice ---------- */
+.layout{display:grid;grid-template-columns:220px minmax(0,1fr);gap:48px;align-items:start;padding-block:48px 80px}
+.toc{position:sticky;top:calc(24px + env(safe-area-inset-top,0px));display:flex;flex-direction:column;gap:2px}
+.toc .t{font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);margin-bottom:10px}
+.toc a{display:grid;grid-template-columns:30px 1fr;gap:6px;padding:8px 10px;border-radius:3px;color:var(--ink-2);text-decoration:none;font-size:15px;line-height:1.25;border-left:2px solid transparent}
+.toc a b{font-family:var(--f-mono);font-weight:500;font-size:12px;padding-top:2px}
+.toc a:hover{background:var(--wash);color:var(--ink)}
+.toc a.on{border-left-color:var(--accent);color:var(--ink);font-weight:600;background:var(--paper)}
+.toc a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.toc .sig{margin-top:20px;padding-top:16px;border-top:1px solid var(--rule);font-size:13px;color:var(--ink-2)}
+.toc .sig b{display:block;color:var(--ink);font-size:14px}
+main{display:flex;flex-direction:column;gap:88px;min-width:0}
+
+/* ---------- secciones ---------- */
+.sec{display:flex;flex-direction:column;gap:28px;min-width:0}
+.sh{display:grid;gap:12px}
+.sh .no{font-family:var(--f-mono);font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:12px}
+.sh .no::before{content:"";width:28px;height:3px;background:var(--accent);flex:none}
+.sh h2{font-family:var(--f-display);font-stretch:112%;font-weight:850;font-size:clamp(30px,3.6vw,46px);line-height:1.02;letter-spacing:-.01em;text-wrap:balance;max-width:24ch}
+.sh h2 em{font-style:normal;color:var(--accent)}
+.sh p{color:var(--ink-2);font-size:18px;max-width:64ch}
+.panel{background:var(--paper);border:1px solid var(--rule);border-radius:4px;padding:28px;min-width:0}
+.panel-h{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px 24px;margin-bottom:20px}
+.panel-h h3{font-family:var(--f-display);font-stretch:108%;font-weight:800;font-size:22px;line-height:1.15}
+.sub{color:var(--ink-2);font-size:15px;margin-top:4px}
+.cap{font-size:13px;color:var(--ink-2);margin-top:14px;font-family:var(--f-mono);letter-spacing:.02em}
+.lbl{font-family:var(--f-mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2)}
+.g2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.g3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.card{background:var(--paper);border:1px solid var(--rule);border-radius:4px;padding:22px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.card h3{font-family:var(--f-display);font-stretch:106%;font-weight:800;font-size:20px;line-height:1.15}
+.card p{color:var(--ink-2);font-size:16px}
+.dots li{position:relative;padding-left:18px;margin-bottom:6px;color:var(--ink-2);font-size:16px}
+.dots li::before{content:"";position:absolute;left:2px;top:.62em;width:7px;height:7px;border-radius:1px;background:var(--accent);opacity:.75}
+.dots li b{color:var(--ink)}
+
+/* control segmentado */
+.seg{display:inline-flex;flex-wrap:wrap;gap:4px;background:var(--wash);padding:4px;border-radius:4px}
+.seg button{border:0;background:transparent;padding:7px 14px;border-radius:3px;font-size:14px;font-weight:600;color:var(--ink-2);cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--paper);color:var(--ink);box-shadow:0 1px 3px rgba(14,27,51,.12)}
+.seg button:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+
+/* hallazgo central */
+.find{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:36px;align-items:center}
+.hb{display:grid;gap:22px}
+.hb .row{display:grid;gap:8px}
+.hb .track{height:30px;background:var(--wash);border-radius:2px;overflow:hidden}
+.hb .fill{height:100%;transform-origin:left;animation:growX 1.1s cubic-bezier(.2,.75,.2,1) both .3s}
+.hb .val{font-family:var(--f-display);font-stretch:112%;font-weight:800;font-size:24px}
+.mult{font-family:var(--f-display);font-stretch:120%;font-weight:900;font-size:clamp(90px,11vw,150px);line-height:.85;color:var(--gold);letter-spacing:-.03em}
+
+/* mapa del plan */
+.plan{display:grid;grid-template-columns:130px repeat(4,minmax(0,1fr));gap:8px;font-size:14px}
+.plan .yh{font-family:var(--f-mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2);padding-bottom:6px;border-bottom:2px solid var(--ink)}
+.plan .eje{font-family:var(--f-display);font-stretch:106%;font-weight:800;font-size:16px;line-height:1.15;padding-top:6px}
+.plan .cell{display:flex;flex-direction:column;gap:6px}
+.m{position:relative;padding:7px 9px;border-radius:3px;background:var(--wash);line-height:1.2;transition:background .25s,color .25s,opacity .25s,box-shadow .25s}
+.m small{display:block;font-family:var(--f-mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;margin-top:4px;opacity:.9}
+.m small:empty{display:none}
+.plan.dim .m{opacity:.38}
+.plan .m.hl{opacity:1;background:var(--accent);color:#fff;font-weight:600;box-shadow:0 4px 14px color-mix(in srgb,var(--accent) 30%,transparent)}
+.plan .m.hl.gold{background:var(--gold);color:#2b1f00;box-shadow:0 4px 14px color-mix(in srgb,var(--gold) 30%,transparent)}
+.plan .m.opt{background:transparent;border:1.5px dashed var(--grey);color:var(--ink-2)}
+.plan .m.opt.hl{background:var(--gold);border-color:var(--gold);color:#2b1f00}
+.plan-note{margin-top:16px;font-size:15px;color:var(--ink-2);min-height:3em}
+.plan-note b{color:var(--ink)}
+
+/* recorrido */
+.path{display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
+.ps{padding:6px 18px 0;border-left:1px solid var(--rule)}
+.ps:first-child{border-left:0;padding-left:0}
+.ps .verb{font-family:var(--f-display);font-stretch:118%;font-weight:900;font-size:clamp(26px,2.6vw,36px);line-height:1;margin:8px 0}
+.ps:nth-child(1) .verb{color:color-mix(in srgb,var(--accent) 45%,var(--ink-2))}
+.ps:nth-child(2) .verb{color:color-mix(in srgb,var(--accent) 65%,var(--ink-2))}
+.ps:nth-child(3) .verb{color:color-mix(in srgb,var(--accent) 85%,var(--ink-2))}
+.ps:nth-child(4) .verb{color:var(--accent)}
+.ps .mat{font-weight:700;line-height:1.25}
+.ps p{font-size:15px;color:var(--ink-2);margin-top:4px}
+.ramp{margin-top:22px;height:12px;background:linear-gradient(90deg,color-mix(in srgb,var(--accent) 20%,transparent),var(--accent));clip-path:polygon(0 70%,98.5% 0,100% 50%,98.5% 100%,0 100%)}
+.ends{display:flex;justify-content:space-between;margin-top:8px}
+
+/* orientaciones */
+.ori{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-size:14px;padding:4px 12px;border-radius:99px;background:var(--wash);white-space:nowrap}
+.chip.on{background:var(--accent);color:#fff;font-weight:600}
+.chip.new{background:var(--gold);color:#2b1f00;font-weight:700}
+.ori h4{font-family:var(--f-display);font-stretch:106%;font-weight:800;font-size:20px;margin:8px 0}
+
+/* línea de tiempo */
+.tl{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:auto 56px auto;column-gap:14px}
+.tl .axis{grid-column:1/-1;grid-row:2;align-self:center;height:4px;background:var(--accent);border-radius:2px}
+.tl .yr{grid-row:2;align-self:center;z-index:1;font-family:var(--f-display);font-stretch:118%;font-weight:900;font-size:22px;background:var(--paper);padding-right:10px;justify-self:start}
+.mile{display:flex;gap:12px;padding:14px;background:var(--wash);border-radius:4px;min-width:0}
+.mile.up{grid-row:1;align-self:end}.mile.dn{grid-row:3;align-self:start}
+.mile svg{width:34px;height:34px;flex:none;color:var(--accent)}
+.mile b{display:block;font-family:var(--f-display);font-stretch:104%;font-weight:800;font-size:16px;line-height:1.15}
+.mile span{display:block;font-size:14px;color:var(--ink-2);line-height:1.3;margin-top:3px}
+
+/* checklist de validación */
+.check li{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:start;padding:12px 0;border-bottom:1px solid var(--rule)}
+.check li:last-child{border-bottom:0}
+.check input{width:20px;height:20px;margin:2px 0 0;accent-color:var(--good);cursor:pointer}
+.check label{cursor:pointer}
+.check label b{display:block}
+.check label span{color:var(--ink-2);font-size:15px}
+.check .st{font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:3px;background:color-mix(in srgb,var(--crit) 14%,transparent);color:var(--crit);white-space:nowrap}
+.check li.ok .st{background:color-mix(in srgb,var(--good) 16%,transparent);color:var(--good)}
+.check li.ok label b{text-decoration:line-through;text-decoration-color:var(--good)}
+.meter{height:8px;background:var(--wash);border-radius:99px;overflow:hidden;margin-top:6px}
+.meter i{display:block;height:100%;background:var(--good);width:0;transition:width .35s}
+.lights{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.lights .card{border-top:5px solid var(--good)}
+.lights .card.w{border-top-color:var(--gold)}.lights .card.r{border-top-color:var(--accent)}
+
+/* indicadores */
+.ind{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);gap:32px;align-items:start}
+.chart svg{width:100%;height:auto;display:block;overflow:visible}
+.chart text{font-family:var(--f-body)}
+.legend{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:14px;color:var(--ink-2);margin-top:10px;align-items:center}
+.legend button{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--rule);background:var(--paper);border-radius:99px;padding:3px 10px;cursor:pointer;font-size:14px;color:var(--ink)}
+.legend button[aria-pressed="false"]{opacity:.4}
+.legend i{display:inline-block;width:18px;height:9px;border-radius:2px;vertical-align:middle}
+.big{font-family:var(--f-display);font-stretch:116%;font-weight:900;font-size:clamp(56px,6.6vw,88px);line-height:.9;letter-spacing:-.02em}
+.t-crit{color:var(--crit)}.t-acc{color:var(--accent)}.t-good{color:var(--good)}.t-gold{color:var(--gold)}
+.read{display:flex;flex-direction:column;gap:14px}
+.read p{color:var(--ink-2)}
+.read p b{color:var(--ink)}
+.read .q{border-top:1px solid var(--rule);padding-top:14px}
+.read .q ul{margin-top:8px}
+.tip{position:fixed;z-index:50;pointer-events:none;background:var(--ink);color:var(--paper);font-size:13px;padding:6px 10px;border-radius:3px;max-width:260px;opacity:0;transition:opacity .12s;left:0;top:0}
+.tip.show{opacity:1}
+.bar-anim{transform-box:fill-box;transform-origin:center bottom;animation:growY .8s cubic-bezier(.2,.75,.2,1) both}
+.line-anim{stroke-dasharray:1;stroke-dashoffset:0;animation:draw 1.2s ease-out both}
+
+/* simulador */
+.sim{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px;align-items:center}
+.sim input[type=range]{width:100%;accent-color:var(--accent);height:28px;margin-top:8px}
+.sim .out{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.sim .o{background:var(--wash);border-radius:4px;padding:16px}
+.sim .o .v{font-family:var(--f-display);font-stretch:115%;font-weight:900;font-size:40px;line-height:1}
+.sim .o .l{font-size:14px;color:var(--ink-2);margin-top:6px}
+.gauge{position:relative;height:16px;background:linear-gradient(90deg,var(--good) 0 65%,var(--gold) 65% 82%,var(--crit) 82%);border-radius:99px;margin-top:24px;opacity:.9}
+.gauge .avg{position:absolute;top:-8px;bottom:-8px;width:2px;background:var(--ink)}
+.gauge .pin{position:absolute;top:-6px;width:28px;height:28px;margin-left:-14px;border-radius:50%;background:var(--paper);border:4px solid var(--ink);transition:left .25s}
+.gscale{position:relative;height:18px;margin-top:12px;font-size:13px;color:var(--ink-2);font-family:var(--f-mono)}
+.gscale span{position:absolute;transform:translateX(-50%);white-space:nowrap}
+.gscale span:first-child{transform:none}.gscale span:last-child{transform:translateX(-100%)}
+
+/* desafíos */
+.chal{background:var(--navy);color:var(--on-navy);border-radius:4px;padding:32px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
+.chal .c+.c{border-left:1px solid rgba(255,255,255,.16);padding-left:28px}
+.chal .big{font-size:clamp(48px,5vw,72px);color:var(--gold)}
+.chal .big.r{color:#FF8A7A}
+.chal h3{font-family:var(--f-display);font-stretch:106%;font-weight:800;font-size:20px;margin-top:10px}
+.chal p{color:var(--on-navy-2);font-size:15px;margin-top:4px}
+
+/* cronograma + detalle */
+.gantt{display:grid;grid-template-columns:1fr;gap:20px;align-items:start}
+.big small{font-size:.38em;margin-left:.15em;letter-spacing:0}
+.task{cursor:pointer;outline:none}
+.task:focus-visible rect{stroke:var(--ink);stroke-width:3}
+.detail{background:var(--wash);border-radius:4px;padding:20px;display:flex;flex-direction:column;gap:12px}
+.detail h4{font-family:var(--f-display);font-stretch:106%;font-weight:800;font-size:20px;line-height:1.15}
+.detail dl{display:grid;grid-template-columns:96px minmax(0,1fr) 96px minmax(0,1fr);gap:10px 14px;margin:0;font-size:15px}
+@media (max-width:820px){.detail dl{grid-template-columns:96px minmax(0,1fr)}}
+.detail dt{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);padding-top:3px}
+.detail dd{margin:0}
+
+/* hub */
+.hub{display:grid;grid-template-columns:minmax(0,1fr) 230px minmax(0,1fr);grid-template-rows:auto auto;gap:18px 34px;align-items:center}
+.hub .core{grid-column:2;grid-row:1/3;aspect-ratio:1;border-radius:50%;background:var(--accent);color:#fff;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:26px;box-shadow:0 0 0 14px var(--accent-soft)}
+.hub .core b{font-family:var(--f-display);font-stretch:110%;font-weight:900;font-size:22px;line-height:1.05}
+.hub .core span{font-size:14px;opacity:.9;margin-top:6px}
+.hub .node{background:var(--wash);border-radius:4px;padding:14px 16px;position:relative}
+.hub .node b{display:block;font-family:var(--f-display);font-stretch:104%;font-weight:800;font-size:16px}
+.hub .node span{font-size:14px;color:var(--ink-2)}
+.hub .n1{grid-column:1;grid-row:1}.hub .n2{grid-column:1;grid-row:2}.hub .n3{grid-column:3;grid-row:1}.hub .n4{grid-column:3;grid-row:2}
+.hub .n1::after,.hub .n2::after{content:"";position:absolute;right:-34px;top:50%;width:34px;height:2px;background:var(--accent)}
+.hub .n3::before,.hub .n4::before{content:"";position:absolute;left:-34px;top:50%;width:34px;height:2px;background:var(--accent)}
+
+/* tabla */
+.tbl{overflow-x:auto}
+.tbl table{width:100%;border-collapse:collapse;font-size:15px;min-width:560px}
+.tbl th{text-align:left;font-family:var(--f-mono);font-weight:500;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);padding:8px 10px;border-bottom:2px solid var(--ink)}
+.tbl td{padding:10px;border-bottom:1px solid var(--rule);vertical-align:top}
+.tbl td:first-child{font-weight:700}
+
+/* prioridad */
+.prio{background:var(--navy);color:var(--on-navy);border-radius:4px;padding:26px;display:flex;flex-direction:column;gap:12px}
+.prio .lbl{color:var(--gold)}
+.prio h3{font-family:var(--f-display);font-stretch:108%;font-weight:850;font-size:26px;line-height:1.1}
+.prio li{color:var(--on-navy-2)}
+.prio li::before{background:var(--gold)}
+.prio p{color:var(--on-navy-2);font-size:15px}
+
+/* trayectoria */
+.traj{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.traj div{height:54px;display:flex;align-items:center;justify-content:center;font-family:var(--f-display);font-stretch:114%;font-weight:900;font-size:20px;color:#fff;border-radius:3px}
+.traj .r{background:var(--crit)}.traj .g{background:var(--good)}.traj .w{background:var(--gold);color:#2b1f00}
+.zones{display:grid;grid-template-columns:1fr 2fr 1fr;gap:24px;margin-top:18px}
+.zones h3{font-family:var(--f-display);font-stretch:106%;font-weight:800;font-size:20px;margin:6px 0}
+.zones p{color:var(--ink-2);font-size:15px}
+.zones .chips{margin-top:10px}
+
+/* IA */
+.shift{background:var(--navy);color:var(--on-navy);border-radius:4px;padding:34px;display:grid;grid-template-columns:auto auto 1fr;gap:28px;align-items:center}
+.shift .from{font-family:var(--f-display);font-stretch:118%;font-weight:900;font-size:clamp(36px,4.6vw,60px);color:var(--on-navy-2);opacity:.55;text-decoration:line-through;text-decoration-thickness:.08em}
+.shift svg{width:72px;height:30px;color:var(--gold)}
+.shift .to{font-family:var(--f-display);font-stretch:118%;font-weight:900;font-size:clamp(32px,4vw,54px);line-height:1}
+.shift .to span{display:block}.shift .to span:nth-child(2){color:var(--gold)}
+
+/* cierre */
+.close{background:var(--navy);color:var(--on-navy)}
+.close .wrap{padding-block:64px;display:grid;gap:40px}
+.close .three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
+.close .three div+div{border-left:1px solid rgba(255,255,255,.16);padding-left:28px}
+.close .verb{font-family:var(--f-display);font-stretch:118%;font-weight:900;font-size:clamp(40px,5vw,68px);line-height:.95;color:var(--gold)}
+.close p{color:var(--on-navy-2);margin-top:8px;font-size:17px}
+.close .sign{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;border-top:1px solid rgba(255,255,255,.16);padding-top:22px}
+.close .sign b{font-family:var(--f-display);font-stretch:110%;font-weight:800;font-size:24px}
+.close .sign span{color:var(--on-navy-2)}
+
+@keyframes growX{from{transform:scaleX(0)}}
+@keyframes growY{from{transform:scaleY(0)}}
+@keyframes draw{from{stroke-dashoffset:1}}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}}
+.hero .rise{animation:rise .8s cubic-bezier(.2,.75,.2,1) both}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+
+/* ---------- responsive ---------- */
+@media (max-width:1020px){
+  .layout{grid-template-columns:1fr;gap:28px;padding-top:0}
+  .toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;flex-direction:row;overflow-x:auto;gap:4px;background:var(--bg);padding-block:10px;margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)));padding-inline:max(16px,env(safe-area-inset-left,0px));border-bottom:1px solid var(--rule)}
+  body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:31;background:var(--bg)}
+  .toc .t,.toc .sig{display:none}
+  .toc a{white-space:nowrap;border-left:0;border-bottom:2px solid transparent;grid-template-columns:auto auto}
+  .toc a.on{border-bottom-color:var(--accent)}
+  html{scroll-padding-top:70px}
+}
+@media (max-width:820px){
+  .strip,.g3,.lights,.chal,.close .three{grid-template-columns:1fr}
+  .strip .k+.k,.chal .c+.c,.close .three div+div{border-left:0;padding-left:0;border-top:1px solid rgba(255,255,255,.16);padding-top:18px}
+  .g2,.find,.ind,.sim,.gantt,.ori{grid-template-columns:1fr}
+  .path{grid-template-columns:1fr 1fr;row-gap:20px}
+  .ps:nth-child(3){border-left:0;padding-left:0}
+  .plan{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .plan .yh,.plan>span:first-child{display:none}
+  .plan .eje{grid-column:1/-1;margin-top:8px}
+  .plan .cell::before{content:attr(data-y);font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;color:var(--ink-2)}
+  .plan .cell:empty{display:none}
+  .tl{grid-template-columns:1fr;grid-template-rows:none;row-gap:10px}
+  .tl .axis,.tl .yr{display:none}
+  .mile.up,.mile.dn{grid-row:auto;grid-column:auto!important}
+  .hub{grid-template-columns:1fr;grid-template-rows:none}
+  .hub .core,.hub .node{grid-column:auto;grid-row:auto}
+  .hub .core{aspect-ratio:auto;border-radius:4px}
+  .hub .node::after,.hub .node::before{display:none}
+  .zones{grid-template-columns:1fr}
+  .shift{grid-template-columns:1fr}
+  .panel{padding:20px}
+}
+</style>
+
+<!-- ================= PORTADA ================= -->
+<header class="hero gut">
+  <div class="ghost" aria-hidden="true">LGTI</div>
+  <div class="wrap">
+    <div class="rise">
+      <div class="kick">Evaluación Final · Programa de Entrenamiento · Responsable de Carrera</div>
+      <h1>Diagnóstico y plan de gestión de la <span>LGTI</span></h1>
+      <p class="intro">Licenciatura en Gestión de Tecnología de la Información. Análisis del Plan de Estudios, de sus diferenciales y de sus indicadores, con un plan de trabajo a 90 días y una mirada sobre el impacto de la Inteligencia Artificial.</p>
+    </div>
+    <div class="byline rise" style="animation-delay:.15s"><span class="who">Mg. Santiago Mendoza</span><span>Responsable de Carrera</span><span>30 de octubre de 2026</span></div>
+    <div class="strip rise" style="animation-delay:.3s">
+      <div class="k"><span class="v red num">210</span><span class="l">inscriptos en 2026, −36% frente a 2025</span></div>
+      <div class="k"><span class="v gold num">15,91%</span><span class="l">deserción de ingresantes de marzo al 21/10</span></div>
+      <div class="k"><span class="v green num">1,79%</span><span class="l">deserción de no ingresantes, mínimo de la serie</span></div>
+      <div class="k"><span class="v num">22,37%</span><span class="l">tasa de graduación 2025, casi el doble que en 2021</span></div>
+    </div>
+  </div>
+</header>
+
+<div class="gut"><div class="wrap layout">
+<nav class="toc" aria-label="Índice">
+  <span class="t">Contenido</span>
+  <a href="#hallazgo"><b>00</b>Hallazgo central</a>
+  <a href="#plan-estudios"><b>01</b>Plan de Estudios</a>
+  <a href="#diferenciales"><b>02</b>Diferenciales</a>
+  <a href="#indicadores"><b>03</b>Indicadores</a>
+  <a href="#plan-90"><b>04</b>Plan a 90 días</a>
+  <a href="#retencion"><b>05</b>Retención</a>
+  <a href="#ia"><b>06</b>IA y graduado</a>
+  <div class="sig"><b>Mg. Santiago Mendoza</b>Responsable de Carrera · LGTI<br>30/10/2026</div>
+</nav>
+
+<main>
+
+<!-- ================= 00 HALLAZGO ================= -->
+<section class="sec" id="hallazgo">
+  <div class="sh"><span class="no">00 · Hallazgo central</span>
+    <h2>El abandono se concentra en el <em>primer año</em></h2>
+    <p>Antes de cualquier propuesta, un criterio: comparar valores absolutos y períodos equivalentes. Con ese criterio, este es el dato que ordena todo el diagnóstico.</p></div>
+  <div class="panel find">
+    <div class="hb">
+      <div class="row"><span class="lbl">Deserción de ingresantes de marzo · 2026</span><div class="track"><div class="fill" style="width:88%;background:var(--crit)"></div></div><span class="val num">15,91%</span></div>
+      <div class="row"><span class="lbl">Deserción de no ingresantes · 2026</span><div class="track"><div class="fill" style="width:9.9%;background:var(--grey);animation-delay:.5s"></div></div><span class="val num">1,79%</span></div>
+    </div>
+    <div><div class="mult num">9×</div><p style="color:var(--ink-2);margin-top:10px;max-width:28ch">Quien supera el primer año tiende a quedarse. Por eso la permanencia temprana es la prioridad del plan.</p></div>
+  </div>
+</section>
+
+<!-- ================= 01 PLAN ================= -->
+<section class="sec" id="plan-estudios">
+  <div class="sh"><span class="no">01 · Plan de Estudios y perfil del graduado</span>
+    <h2>Cuatro ejes que crecen en cuatro años, con la <em>gestión</em> desde el inicio</h2>
+    <p>El Plan completo, organizado por eje y año. Los filtros muestran el recorrido formativo propuesto, dónde viven los diferenciales y dónde están las brechas.</p></div>
+
+  <div class="panel">
+    <div class="panel-h"><h3>Mapa del Plan de Estudios</h3>
+      <div class="seg" role="group" aria-label="Filtro del mapa">
+        <button type="button" data-mode="todo" aria-pressed="true">Plan completo</button>
+        <button type="button" data-mode="recorrido" aria-pressed="false">Recorrido formativo</button>
+        <button type="button" data-mode="dif" aria-pressed="false">Diferenciales</button>
+        <button type="button" data-mode="brechas" aria-pressed="false">Brechas: IA y cloud</button>
+      </div></div>
+    <div class="plan" id="plan"></div>
+    <p class="plan-note" id="planNote"></p>
+  </div>
+
+  <div class="panel">
+    <div class="panel-h"><h3>Recorrido formativo: de ejecutar tecnología a gestionarla</h3></div>
+    <div class="path">
+      <div class="ps"><span class="lbl">1° año</span><div class="verb">Resolver</div><div class="mat">Introducción a la Algoritmia</div><p>Pensamiento computacional: descomponer y resolver problemas</p></div>
+      <div class="ps"><span class="lbl">2° año</span><div class="verb">Construir</div><div class="mat">Ingeniería de Datos I</div><p>Modelar e integrar datos, el activo de la organización</p></div>
+      <div class="ps"><span class="lbl">3° año</span><div class="verb">Proteger</div><div class="mat">Seguridad e Integridad de la Información</div><p>Riesgos, vulnerabilidades y controles</p></div>
+      <div class="ps"><span class="lbl">4° año</span><div class="verb">Decidir</div><div class="mat">Negocios Tecnológicos</div><p>Viabilidad, modelo de negocio y propuesta de valor</p></div>
+    </div>
+    <div class="ramp" aria-hidden="true"></div>
+    <div class="ends"><span class="lbl">Ejecución técnica</span><span class="lbl">Gestión de la tecnología</span></div>
+  </div>
+
+  <div class="g2">
+    <div class="card"><span class="lbl">Oportunidad de mejora 1</span><h3>Cloud computing e infraestructura</h3>
+      <ul class="dots"><li>El Plan no tiene contenido cloud explícito</li><li><b>Profundizar:</b> virtualización y nube en Sistemas Operativos y Redes; despliegue en Ingeniería de Datos II</li><li><b>Complementar:</b> ruta de Google Cloud Career Launchpad</li></ul></div>
+    <div class="card"><span class="lbl">Oportunidad de mejora 2</span><h3>IA aplicada, automatización y gobernanza</h3>
+      <ul class="dots"><li>Se comunica como diferencial, pero ninguna materia la nombra</li><li><b>Articular:</b> eje transversal en Ciencia de Datos, Desarrollo de Aplicaciones, Tendencias Tecnológicas y Derecho Informático</li><li><b>Optativa</b> de IA aplicada</li></ul></div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-h"><h3>Optativas: cuatro materias orientadas a un perfil</h3>
+      <div class="seg" role="group" aria-label="Orientación" id="oriSeg">
+        <button type="button" data-o="0" aria-pressed="true">Datos e IA</button>
+        <button type="button" data-o="1" aria-pressed="false">Ciberseguridad</button>
+        <button type="button" data-o="2" aria-pressed="false">Desarrollo</button>
+        <button type="button" data-o="3" aria-pressed="false">Gestión</button>
+      </div></div>
+    <div class="ori" id="ori"></div>
+    <p class="cap">Hoy las optativas se cursan sueltas o como Minor. Propuesta: orientación al cierre de 2° año y tres Minors técnicos nuevos (en dorado).</p>
+  </div>
+</section>
+
+<!-- ================= 02 DIFERENCIALES ================= -->
+<section class="sec" id="diferenciales">
+  <div class="sh"><span class="no">02 · Diferenciales y posicionamiento</span>
+    <h2>Un diferencial vale si el alumno <em>lo vive</em></h2>
+    <p>Cinco diferenciales convertidos en experiencias concretas, ubicadas en el año de la carrera en que el estudiante las atraviesa.</p></div>
+
+  <div class="panel">
+    <div class="tl">
+      <div class="mile up" style="grid-column:1"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="10" width="36" height="26" rx="2"/><path d="M16 42h16M14 20l5 4-5 4M24 28h8"/></svg><div><b>Integrador de 1° año</b><span>Web, Testing y SI II: el alumno construye, prueba y documenta su primer producto</span></div></div>
+      <div class="mile dn" style="grid-column:2"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="24" cy="10" r="4"/><circle cx="10" cy="36" r="4"/><circle cx="38" cy="36" r="4"/><path d="M22 14 12 32M26 14l10 18M14 36h20"/></svg><div><b>Cisco CCNA 1 y 2</b><span>Redes de Datos con laboratorio en Packet Tracer</span></div></div>
+      <div class="mile up" style="grid-column:2"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="8" width="32" height="34" rx="2"/><path d="M16 18h16M16 26h16M16 34h9"/></svg><div><b>CAPM</b><span>Dirección y Evaluación de Proyectos con prácticas PMI</span></div></div>
+      <div class="mile dn" style="grid-column:3"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 36h22a8 8 0 0 0 0-16 12 12 0 0 0-23-2 9 9 0 0 0 1 18z"/><path d="M24 22v10M20 28l4 4 4-4"/></svg><div><b>Google Cloud</b><span>Proyecto de datos real desplegado en la nube</span></div></div>
+      <div class="mile up" style="grid-column:4"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M24 42c-4-6-4-14 0-22 4 8 4 16 0 22zM24 20c6-8 12-12 16-12 0 4-4 10-12 16M24 20c-6-8-12-12-16-12 0 4 4 10 12 16"/></svg><div><b>Casos reales + UADE Hub</b><span>Desafío de empresa, MVP y presentación ante el Hub</span></div></div>
+      <div class="axis"></div>
+      <span class="yr" style="grid-column:1">1°</span><span class="yr" style="grid-column:2">2°</span><span class="yr" style="grid-column:3">3°</span><span class="yr" style="grid-column:4">4°</span>
+    </div>
+  </div>
+
+  <div class="lights">
+    <div class="card"><span class="lbl t-good">Bien representado</span><h3>Respaldo curricular sólido</h3><ul class="dots"><li>Técnica y gestión en los cuatro años</li><li>Seguridad y datos con tres niveles de progresión</li></ul></div>
+    <div class="card w"><span class="lbl t-gold">A fortalecer</span><h3>Se comunica, falta anclarlo</h3><ul class="dots"><li>IA sin materia propia</li><li>Casos reales y vinculación sin instancia curricular</li></ul></div>
+    <div class="card r"><span class="lbl t-acc">Prioridades del cuatrimestre</span><h3>Tres iniciativas</h3><ul class="dots"><li><b>Ingreso:</b> Jornadas TI con muestra de proyectos</li><li><b>Permanencia:</b> integrador y acompañamiento de 1°</li><li><b>Empleabilidad:</b> mentorías y ruta de certificaciones</li></ul></div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-h"><div><h3>Validar antes de comunicar</h3><p class="sub">Comunicar solo lo que la carrera puede garantizar. Cada punto se marca a medida que se confirma.</p></div>
+      <div style="min-width:180px"><span class="lbl" id="chkTxt">0 de 6 validados</span><div class="meter"><i id="chkBar"></i></div></div></div>
+    <ul class="check" id="check">
+      <li><input type="checkbox" id="v1"><label for="v1"><b>Acuerdo con Google</b><span>¿Incluye el examen de certificación o solo el acceso a cursos?</span></label><span class="st">Pendiente</span></li>
+      <li><input type="checkbox" id="v2"><label for="v2"><b>Cisco CCNA 1 y 2</b><span>Son dos cursos y el Plan tiene una sola materia de Redes. ¿Dónde se cubre CCNA 2?</span></label><span class="st">Pendiente</span></li>
+      <li><input type="checkbox" id="v3"><label for="v3"><b>Certificación CAPM</b><span>Requisitos de formación del PMI y costo del examen. "Podrás obtener" promete más de lo que se garantiza.</span></label><span class="st">Pendiente</span></li>
+      <li><input type="checkbox" id="v4"><label for="v4"><b>Desarrollo mobile y aprendizaje aplicado</b><span>Se comunican, pero no figuran como materia. ¿Dónde se dictan?</span></label><span class="st">Pendiente</span></li>
+      <li><input type="checkbox" id="v5"><label for="v5"><b>Partners in Learning</b><span>Qué empresas participan y a qué recursos accede el alumno</span></label><span class="st">Pendiente</span></li>
+      <li><input type="checkbox" id="v6"><label for="v6"><b>Inserción laboral</b><span>Respaldar con datos de seguimiento de graduados</span></label><span class="st">Pendiente</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= 03 INDICADORES ================= -->
+<section class="sec" id="indicadores">
+  <div class="sh"><span class="no">03 · Indicadores y diagnóstico</span>
+    <h2>Lo que dicen los datos, <em>leídos con cuidado</em></h2>
+    <p>Valores absolutos antes que porcentaje de cumplimiento, porque los targets cambiaron cada año. Y solo comparaciones entre períodos equivalentes.</p></div>
+
+  <div class="panel">
+    <div class="panel-h"><h3 id="indTitle">Ingreso</h3>
+      <div class="seg" role="group" aria-label="Indicador" id="indSeg">
+        <button type="button" data-i="0" aria-pressed="true">Ingreso</button>
+        <button type="button" data-i="1" aria-pressed="false">Deserción</button>
+        <button type="button" data-i="2" aria-pressed="false">Graduación</button>
+      </div></div>
+
+    <div class="ind" data-ip="0">
+      <div><div class="chart" id="chEnroll"></div>
+        <div class="legend"><span><i style="background:var(--accent)"></i> Marzo</span><span><i style="background:var(--grey)"></i> Agosto</span><span><i style="height:0;border-top:2px dashed var(--ink-2);border-radius:0"></i> Target</span></div>
+        <p class="cap">Fuente: Evolución del Enrollment · LGTI</p></div>
+      <div class="read"><div class="big t-crit num">−39%</div>
+        <p><b>Marzo 2026: 106 inscriptos menos que en 2025.</b> Es el período que explica entre el 72% y el 83% del ingreso anual.</p>
+        <p>Agosto acumula −49% desde 2024. Su 90% de cumplimiento se explica por un target recortado de 87 a 50.</p>
+        <div class="q"><span class="lbl">Hipótesis</span><ul class="dots"><li>Contexto económico y costo de la cuota</li><li>Oferta corta y virtual como competencia</li><li>Campaña, canibalización interna y posicionamiento de la "gestión" de TI</li></ul></div></div>
+    </div>
+
+    <div class="ind" data-ip="1" hidden>
+      <div><div class="chart" id="chDes"></div>
+        <div class="legend" id="desLegend"></div>
+        <p class="cap">Fuente: Tasa de deserción y graduación · QV 223 · 2026 con corte al 21/10</p></div>
+      <div class="read"><div class="big t-acc num">15,9%</div>
+        <p><b>Marzo vuelve a su promedio histórico.</b> El promedio 2021–2025 es 15,87%; 2025 fue el mínimo de la serie (12,56%).</p>
+        <p>Agosto 2026 (3,03%) no es comparable: al corte lleva unos dos meses y medio de cursada.</p>
+        <div class="q"><span class="lbl">Datos a solicitar</span><ul class="dots"><li>2025 con el mismo corte al 21/10</li><li>Curvas de permanencia por cohorte</li><li>Bajas en absolutos, base de cálculo y motivos</li></ul></div></div>
+    </div>
+
+    <div class="ind" data-ip="2" hidden>
+      <div><div class="chart" id="chGrad"></div>
+        <div class="legend"><span><i style="background:var(--good)"></i> Año cerrado</span><span><i style="background:transparent;border:2px dashed var(--good)"></i> 2026, solo 1° cuatrimestre</span></div>
+        <p class="cap">Fuente: Tasa de deserción y graduación · QV 223</p></div>
+      <div class="read"><div class="big t-good num">+10,5<small>pp</small></div>
+        <p><b>La graduación casi se duplica entre 2021 y 2025.</b> Tendencia positiva y consistente.</p>
+        <p>El 22,60% del primer cuatrimestre de 2026 ya supera a todo 2025. Si la tasa usa la matrícula total, la caída del ingreso achica el denominador.</p>
+        <div class="q"><span class="lbl">Sin bajar la exigencia</span><ul class="dots"><li>Plan de finalización para quienes deben 5 materias o menos</li><li>Comisiones compatibles con el trabajo</li><li>Talleres de preparación de finales</li></ul></div></div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-h"><div><h3>Simulador: ¿cuánto vale bajar la deserción de marzo?</h3><p class="sub">Aplicado a la cohorte de 165 ingresantes de marzo 2026.</p></div></div>
+    <div class="sim">
+      <div>
+        <label for="simR" class="lbl">Reducción de la deserción: <b id="simPP" style="color:var(--ink)">2,0</b> puntos porcentuales</label>
+        <input type="range" id="simR" min="0" max="8" step="0.5" value="2">
+        <div class="gauge" aria-hidden="true"><span class="avg" id="gAvg"></span><span class="pin" id="gPin"></span></div>
+        <div class="gscale" aria-hidden="true"><span style="left:0">7%</span><span id="gAvgL">Promedio 15,9%</span><span style="left:100%">20%</span></div>
+      </div>
+      <div class="out">
+        <div class="o"><div class="v num t-good" id="simKeep">3</div><div class="l">estudiantes más que continúan en la carrera</div></div>
+        <div class="o"><div class="v num" id="simRate">13,9%</div><div class="l" id="simTxt">tasa resultante</div></div>
+      </div>
+    </div>
+    <p class="cap">Estimación ilustrativa: supone que la tasa se calcula sobre los 165 inscriptos. La base real de cálculo es uno de los datos a validar.</p>
+  </div>
+
+  <div class="g2">
+    <div class="card"><span class="lbl">Cinco indicadores académicos prioritarios</span>
+      <ol class="dots"><li>Aprobación por materia de 1° año</li><li>Abandono de cursada</li><li>Recursado y cuellos de botella por correlatividades</li><li>Presentismo de las primeras semanas</li><li>Avance real por cohorte</li></ol></div>
+    <div class="card"><span class="lbl">Primer año: dónde mirar</span>
+      <ul class="dots"><li><b>Identificación temprana:</b> Diseño y Desarrollo Web y Testing de Aplicaciones</li><li><b>Mayor dificultad:</b> Introducción a la Algoritmia, AED I, Matemática Discreta</li><li><b>Momentos críticos:</b> semanas 4 a 6 y pasaje al 2° cuatrimestre</li></ul></div>
+  </div>
+</section>
+
+<!-- ================= 04 PLAN 90 ================= -->
+<section class="sec" id="plan-90">
+  <div class="sh"><span class="no">04 · Caso integrador de gestión</span>
+    <h2>Plan de trabajo a 90 días: primero <em>la cohorte actual</em></h2></div>
+
+  <div class="chal">
+    <div class="c"><div class="big r num">−39%</div><h3>Ingreso en caída</h3><p>Una propuesta valiosa que no se comunica con claridad</p></div>
+    <div class="c"><div class="big r num">9×</div><h3>Abandono temprano</h3><p>El primer año define la permanencia</p></div>
+    <div class="c"><div class="big num">3</div><h3>Acuerdos por validar</h3><p>Google, Cisco y PMI: diferenciales sin recorrido visible</p></div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-h"><h3>Cronograma: noviembre 2026 a enero 2027</h3><span class="lbl">Elegí una acción para ver el detalle</span></div>
+    <div class="gantt">
+      <div class="chart" id="chPlan"></div>
+      <div class="detail" id="detail" aria-live="polite"></div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-h"><div><h3>Acción académica: Proyecto Integrador Profesional</h3><p class="sub">Articula materias existentes sin reformar el Plan y ataca los tres desafíos a la vez.</p></div></div>
+    <div class="hub">
+      <div class="node n1"><b>Ingeniería de Datos II · Ciencia de Datos</b><span>Solución de datos e IA en Google Cloud</span></div>
+      <div class="node n2"><b>Seguridad de Procesos y Aplicaciones</b><span>Riesgos y controles</span></div>
+      <div class="core"><b>Desafío real de una empresa</b><span>Equipos de 3° y 4° año</span></div>
+      <div class="node n3"><b>Seminario de Gestión de Tecnología</b><span>Gestión con prácticas PMI</span></div>
+      <div class="node n4"><b>Negocios Tecnológicos</b><span>Propuesta de valor ante UADE Hub</span></div>
+    </div>
+  </div>
+
+  <div class="g2" style="align-items:start">
+    <div class="prio"><span class="lbl">Prioridad del primer mes</span><h3>Retener la cohorte de marzo 2026</h3>
+      <ul class="dots"><li>Contacto uno a uno con los 165 ingresantes</li><li>Tutorías para los finales de diciembre</li><li>Registro de motivos de riesgo para la alerta temprana 2027</li></ul>
+      <p>Es lo más urgente, depende directamente de la carrera y retener cuesta menos que captar.</p></div>
+    <div class="panel" style="padding:20px"><div class="tbl"><table style="min-width:0">
+      <thead><tr><th>Tipo</th><th>Indicador de seguimiento</th></tr></thead>
+      <tbody>
+        <tr><td>Ingreso</td><td>Preinscriptos y conversión 2027 vs. igual fecha 2026</td></tr>
+        <tr><td>Retención</td><td>% de la cohorte marzo 2026 que se reinscribe</td></tr>
+        <tr><td>Académico</td><td>Aprobación en finales de diciembre de 1° año</td></tr>
+        <tr><td>Experiencia</td><td>Satisfacción de ingresantes y uso de tutorías</td></tr>
+        <tr><td>Vinculación</td><td>Empresas en proyectos y alumnos certificados</td></tr>
+      </tbody></table></div></div>
+  </div>
+</section>
+
+<!-- ================= 05 RETENCIÓN ================= -->
+<section class="sec" id="retencion">
+  <div class="sh"><span class="no">05 · Retención y permanencia</span>
+    <h2>Intervenir en los <em>dos extremos</em> de la carrera</h2></div>
+  <div class="panel">
+    <div class="traj"><div class="r">1° año</div><div class="g">2° año</div><div class="g">3° año</div><div class="w">4° año</div></div>
+    <div class="zones">
+      <div><span class="lbl t-crit">Riesgo: abandono</span><h3>Ingreso</h3><p>Deserción de marzo entre 12,6% y 19,7% desde 2021, en las materias de mayor exigencia técnica</p><div class="chips"><span class="chip on">Alerta temprana</span><span class="chip on">Tutorías de pares</span></div></div>
+      <div><span class="lbl t-good">Estable</span><h3>Tramo medio</h3><p>Deserción de no ingresantes en 1,79%, el mínimo de la serie, con descenso sostenido desde 6,78% en 2021</p></div>
+      <div><span class="lbl t-gold">Riesgo: demora</span><h3>Egreso</h3><p>Trabajo a tiempo completo, comisiones incompatibles y finales adeudados</p><div class="chips"><span class="chip on">Plan de finalización</span></div></div>
+    </div>
+  </div>
+  <div class="panel"><div class="tbl"><table>
+    <thead><tr><th>Acción</th><th>Población</th><th>Áreas</th><th>Plazo</th><th>Indicador</th></tr></thead>
+    <tbody>
+      <tr><td>Alerta temprana</td><td>Ingresantes de marzo y agosto</td><td>Gestión de Alumnos, Bienestar, Orientación</td><td>Diseño en 60 días; activa desde marzo 2027</td><td>% de alertados que se reinscriben</td></tr>
+      <tr><td>Tutorías y mentoría de pares</td><td>Ingresantes, prioridad alertados</td><td>Departamento, Bienestar, docentes de 1°</td><td>Piloto en finales de diciembre 2026</td><td>Aprobación de asistentes vs. no asistentes</td></tr>
+      <tr><td>Plan de finalización</td><td>Hasta 5 materias pendientes o finales adeudados</td><td>Departamento, Facultad, Gestión de Alumnos</td><td>Relevamiento en 30 días; ciclo 2027</td><td>Graduados por año y tiempo hasta el egreso</td></tr>
+    </tbody></table></div></div>
+</section>
+
+<!-- ================= 06 IA ================= -->
+<section class="sec" id="ia">
+  <div class="sh"><span class="no">06 · Inteligencia Artificial y perfil del graduado</span>
+    <h2>El graduado de los próximos cinco años</h2></div>
+  <div class="shift">
+    <div class="from">Operar</div>
+    <svg viewBox="0 0 70 30" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 15h60M50 4l14 11-14 11"/></svg>
+    <div class="to"><span>Orquestar</span><span>Evaluar</span><span>Gobernar</span></div>
+  </div>
+  <div class="g3">
+    <div class="card"><span class="lbl">Competencia 1</span><h3>IA aplicada y automatización</h3><p>Integrar, evaluar y desplegar modelos en procesos y aplicaciones.</p></div>
+    <div class="card"><span class="lbl">Competencia 2</span><h3>Gobernanza, ética y riesgo</h3><p>Sesgos, privacidad y marco normativo, junto con Seguridad y Derecho Informático.</p></div>
+    <div class="card"><span class="lbl">Competencia 3</span><h3>Pensamiento crítico y negocio</h3><p>Formular el problema, verificar resultados y medir el valor generado.</p></div>
+  </div>
+  <div class="g2">
+    <div class="card"><span class="lbl">Iniciativa 1</span><h3>IA en cada materia</h3><p>Uso declarado, verificado y evaluado en Desarrollo de Aplicaciones, Testing, Ingeniería de Software, Ciencia de Datos y Derecho Informático.</p></div>
+    <div class="card"><span class="lbl">Iniciativa 2</span><h3>Desafío anual de IA con empresas</h3><p>Prototipo en Google Cloud con evaluación de riesgos, jurado externo y derivación a UADE Hub.</p></div>
+  </div>
+</section>
+
+</main>
+</div></div>
+
+<!-- ================= CIERRE ================= -->
+<footer class="close gut">
+  <div class="wrap">
+    <div class="kick">Síntesis</div>
+    <div class="three">
+      <div><div class="verb">Retener</div><p>el primer año, donde se concentra el abandono</p></div>
+      <div><div class="verb">Mostrar</div><p>los diferenciales con evidencia verificable</p></div>
+      <div><div class="verb">Anticipar</div><p>el perfil profesional que exige la IA</p></div>
+    </div>
+    <div class="sign"><b>Mg. Santiago Mendoza</b><span>Responsable de Carrera · Licenciatura en Gestión de Tecnología de la Información · 30 de octubre de 2026</span></div>
+  </div>
+</footer>
+
+<div class="tip" id="tip" role="tooltip"></div>
+
+<script>
+(function(){
+  const NS='http://www.w3.org/2000/svg';
+  const fmt=(v,d=0)=>v.toLocaleString('es-AR',{minimumFractionDigits:d,maximumFractionDigits:d});
+  const $=s=>document.querySelector(s);
+  function svg(w,h,label){const s=document.createElementNS(NS,'svg');s.setAttribute('viewBox',`0 0 ${w} ${h}`);s.setAttribute('role','img');s.setAttribute('aria-label',label);return s;}
+  function el(tag,a,p,t){const e=document.createElementNS(NS,tag);for(const k in a)e.setAttribute(k,a[k]);if(t!=null)e.textContent=t;if(p)p.appendChild(e);return e;}
+
+  /* tooltip */
+  const tip=$('#tip');
+  function hov(e,text){
+    e.addEventListener('pointerenter',()=>{tip.textContent=text;tip.classList.add('show');});
+    e.addEventListener('pointermove',ev=>{tip.style.left=Math.min(ev.clientX+14,innerWidth-270)+'px';tip.style.top=(ev.clientY+14)+'px';});
+    e.addEventListener('pointerleave',()=>tip.classList.remove('show'));
+    el('title',{},e,text);return e;}
+
+  /* ---------- mapa del plan ---------- */
+  const R='recorrido',DIF='dif',BR='brechas';
+  const PLAN=[
+    {e:'Programación y desarrollo',y:[
+      [{n:'Introducción a la Algoritmia',t:[R]},{n:'Algoritmos y Estructuras de Datos I'},{n:'Diseño y Desarrollo Web',t:[DIF],d:'Integrador 1°'},{n:'Testing de Aplicaciones',t:[DIF],d:'Integrador 1°'}],
+      [{n:'Algoritmos y Estructuras de Datos II'},{n:'Paradigma Orientado a Objetos'},{n:'Diseño y Análisis de Algoritmos'},{n:'Ingeniería de Software'}],
+      [{n:'Aplicaciones Interactivas'},{n:'Proceso de Desarrollo de Software'}],
+      [{n:'Desarrollo de Aplicaciones I',t:[BR],b:'IA'},{n:'Desarrollo de Aplicaciones II',t:[BR],b:'IA'}]]},
+    {e:'Datos',y:[
+      [{n:'Matemática Discreta'}],
+      [{n:'Ingeniería de Datos I',t:[R]}],
+      [{n:'Ingeniería de Datos II',t:[DIF,BR],d:'Google Cloud',b:'Cloud'},{n:'Probabilidad y Estadística'},{n:'Estadística Avanzada'}],
+      [{n:'Ciencia de Datos',t:[DIF,BR],d:'Google Cloud',b:'IA'}]]},
+    {e:'Infraestructura y seguridad',y:[
+      [{n:'Arquitectura de Computadores'},{n:'Sistemas Operativos',t:[BR],b:'Cloud'}],
+      [{n:'Redes de Datos',t:[DIF,BR],d:'Cisco CCNA',b:'Cloud'}],
+      [{n:'Seguridad e Integridad de la Información',t:[R]}],
+      [{n:'Seguridad de Procesos y Aplicaciones'}]]},
+    {e:'Gestión y negocio',y:[
+      [{n:'Sistemas de Información I'},{n:'Sistemas de Información II',t:[DIF],d:'Integrador 1°'},{n:'Marketing'}],
+      [{n:'Fundamentos de Economía'},{n:'Gestión de Personas en Org. de Tecnología'},{n:'Dirección de Proyectos de Tecnología',t:[DIF],d:'CAPM'},{n:'Liderazgo y Negociación'}],
+      [{n:'Evaluación de Proyectos de Tecnología',t:[DIF],d:'CAPM'},{n:'Seminario de Gestión de Tecnología',t:[DIF],d:'Casos reales'}],
+      [{n:'Tendencias Tecnológicas',t:[BR],b:'IA'},{n:'Tecnología e Innovación',t:[DIF],d:'UADE Hub'},{n:'Negocios Tecnológicos',t:[R,DIF],d:'UADE Hub'},{n:'Derecho Informático',t:[BR],b:'IA'}]]},
+    {e:'Optativas e inglés',y:[[],[],[{n:'Optativa',o:1},{n:'Optativa',o:1},{n:'Examen de Inglés'}],[{n:'Optativa',o:1},{n:'Optativa',o:1}]]}
+  ];
+  const NOTES={
+    todo:'<b>Cuatro ejes, cuatro años.</b> Programación, datos y seguridad crecen con base, profundización y aplicación; la gestión acompaña desde Marketing en 1° hasta Negocios Tecnológicos en 4°.',
+    recorrido:'<b>Una materia por año:</b> Introducción a la Algoritmia, Ingeniería de Datos I, Seguridad e Integridad de la Información y Negocios Tecnológicos. Del pensamiento computacional a la decisión de negocio.',
+    dif:'<b>Dónde se viven los diferenciales:</b> integrador de 1°, Cisco en Redes, CAPM en Proyectos, Google Cloud en Datos, casos reales y UADE Hub en el tramo final.',
+    brechas:'<b>Dónde entrarían IA y cloud sin reformar el Plan:</b> IA como eje transversal en Desarrollo de Aplicaciones, Ciencia de Datos, Tendencias y Derecho Informático; cloud en Sistemas Operativos, Redes e Ingeniería de Datos II. En dorado, las optativas que alojarían los nuevos Minors.'};
+  const plan=$('#plan');
+  ['','1° año','2° año','3° año','4° año'].forEach(t=>{const s=document.createElement('span');s.className=t?'yh':'';s.textContent=t;plan.appendChild(s);});
+  const cells=[];
+  PLAN.forEach(row=>{
+    const e=document.createElement('span');e.className='eje';e.textContent=row.e;plan.appendChild(e);
+    row.y.forEach((list,yi)=>{const c=document.createElement('div');c.className='cell';c.dataset.y=(yi+1)+'° AÑO';
+      list.forEach(m=>{const d=document.createElement('div');d.className='m'+(m.o?' opt':'');d.textContent=m.n;const sm=document.createElement('small');d.appendChild(sm);d._m=m;c.appendChild(d);cells.push(d);});
+      plan.appendChild(c);});
+  });
+  function setMode(mode){
+    document.querySelectorAll('[data-mode]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.mode===mode)));
+    plan.classList.toggle('dim',mode!=='todo');
+    cells.forEach(d=>{const m=d._m,t=m.t||[];let on=false,gold=false,tag='';
+      if(mode===R&&t.includes(R)) on=true;
+      if(mode===DIF&&t.includes(DIF)){on=true;tag=m.d;}
+      if(mode===BR){if(t.includes(BR)){on=true;tag=m.b;} if(m.o){on=true;gold=true;tag='Nuevo Minor';}}
+      d.classList.toggle('hl',on);d.classList.toggle('gold',gold&&on);d.querySelector('small').textContent=on&&tag?tag:'';});
+    $('#planNote').innerHTML=NOTES[mode];
+  }
+  document.querySelectorAll('[data-mode]').forEach(b=>b.addEventListener('click',()=>setMode(b.dataset.mode)));
+  setMode('todo');
+
+  /* ---------- orientaciones ---------- */
+  const ORI=[
+    {minors:['Salud','Biotecnología','Mecatrónica e Industria 4.0'],nuevo:'Ciencia de Datos e IA',mat:['Visualización y BI','Big Data en la Nube','Machine Learning','IA Aplicada'],cert:'Google Cloud: Data Analytics e IA Generativa'},
+    {minors:['Derecho Informático','Gobierno Digital','Salud'],nuevo:'Ciberseguridad',mat:['Riesgos y Normativas','Seguridad Cloud','Hacking Ético','Forense e Incidentes'],cert:'Cisco CCNA 1 y 2 · Google Cloud Ciberseguridad'},
+    {minors:['Medios Digitales y Entretenimiento','Deportes Electrónicos','Electrónica'],nuevo:'Desarrollo de Software Moderno',mat:['Aplicaciones Móviles','Full Stack','Cloud y DevOps','Calidad y Automatización'],cert:'Portfolio de proyectos desplegados'},
+    {minors:['Emprendedurismo','Gobierno Digital','Comunicación Integrada'],nuevo:null,mat:[],cert:'CAPM · proyecto en UADE Hub'}];
+  function setOri(k){
+    document.querySelectorAll('#oriSeg button').forEach(b=>b.setAttribute('aria-pressed',String(+b.dataset.o===k)));
+    const o=ORI[k];
+    $('#ori').innerHTML=`<div><span class="lbl">Minors actuales recomendados</span><div class="chips" style="margin-top:10px">${o.minors.map(m=>`<span class="chip on">${m}</span>`).join('')}</div>
+      <p style="margin-top:18px"><span class="lbl">Certificación asociada</span><br><b>${o.cert}</b></p></div>
+      <div><span class="lbl">${o.nuevo?'Nuevo Minor propuesto':'Oferta actual'}</span>${o.nuevo?`<h4>${o.nuevo}</h4><div class="chips">${o.mat.map(m=>`<span class="chip new">${m}</span>`).join('')}</div>`:`<p style="margin-top:10px;color:var(--ink-2)">Emprendedurismo y Gobierno Digital ya cubren la orientación de gestión tecnológica.</p>`}</div>`;
+  }
+  document.querySelectorAll('#oriSeg button').forEach(b=>b.addEventListener('click',()=>setOri(+b.dataset.o)));
+  setOri(0);
+
+  /* ---------- checklist ---------- */
+  const boxes=[...document.querySelectorAll('#check input')];
+  function chk(){const n=boxes.filter(b=>b.checked).length;
+    boxes.forEach(b=>{const li=b.closest('li');li.classList.toggle('ok',b.checked);li.querySelector('.st').textContent=b.checked?'Validado':'Pendiente';});
+    $('#chkTxt').textContent=`${n} de ${boxes.length} validados`;$('#chkBar').style.width=(n/boxes.length*100)+'%';}
+  boxes.forEach(b=>b.addEventListener('change',chk));chk();
+
+  /* ---------- gráficos ---------- */
+  function drawEnroll(){
+    const host=$('#chEnroll');host.innerHTML='';
+    const rows=[{y:2024,m:235,mt:317,a:89,at:90},{y:2025,m:271,mt:290,a:55,at:87},{y:2026,m:165,mt:266,a:45,at:50}];
+    const W=640,H=330,x0=40,x1=630,yb=292,yt=20,max=340,Y=v=>yb-(v/max)*(yb-yt);
+    const s=svg(W,H,'Inscriptos de marzo y agosto 2024 a 2026 frente al target');
+    [100,200,300].forEach(v=>{el('line',{x1:x0,x2:x1,y1:Y(v),y2:Y(v),stroke:'var(--rule)'},s);el('text',{x:x0-8,y:Y(v)+4,'text-anchor':'end','font-size':12,fill:'var(--ink-2)'},s,v);});
+    const gw=(x1-x0)/3,bw=70;
+    rows.forEach((r,i)=>{const cx=x0+gw*i+gw/2,xm=cx-bw-5,xa=cx+5,last=i===2;
+      hov(el('rect',{class:'bar-anim',style:`animation-delay:${i*.12}s`,x:xm,y:Y(r.m),width:bw,height:yb-Y(r.m),fill:last?'var(--crit)':'var(--accent)',rx:2},s),`Marzo ${r.y}: ${r.m} inscriptos · target ${r.mt} (${fmt(r.m/r.mt*100,1)}%)`);
+      hov(el('rect',{class:'bar-anim',style:`animation-delay:${i*.12+.06}s`,x:xa,y:Y(r.a),width:bw,height:yb-Y(r.a),fill:'var(--grey)',rx:2},s),`Agosto ${r.y}: ${r.a} inscriptos · target ${r.at} (${fmt(r.a/r.at*100,1)}%)`);
+      [[xm,r.mt],[xa,r.at]].forEach(([x,t])=>el('line',{x1:x-5,x2:x+bw+5,y1:Y(t),y2:Y(t),stroke:'var(--ink-2)','stroke-width':2,'stroke-dasharray':'5 3','pointer-events':'none'},s));
+      el('text',{x:xm+bw/2,y:Y(r.m)+24,'text-anchor':'middle','font-size':19,'font-weight':800,fill:'#fff','pointer-events':'none'},s,r.m);
+      el('text',{x:xa+bw/2,y:Math.min(Y(r.a),Y(r.at))-8,'text-anchor':'middle','font-size':16,'font-weight':700,fill:'var(--ink)'},s,r.a);
+      el('text',{x:cx,y:yb+26,'text-anchor':'middle','font-size':16,'font-weight':700,fill:'var(--ink)'},s,r.y);});
+    el('line',{x1:x0,x2:x1,y1:yb,y2:yb,stroke:'var(--ink-2)'},s);host.appendChild(s);
+  }
+  const DES=[{n:'Ingresantes marzo',c:'var(--accent)',w:4.5,v:[19.69,15.03,14.96,17.13,12.56,15.91],on:true},
+             {n:'Ingresantes agosto',c:'var(--grey)',w:3,v:[11.36,4.30,6.49,5.88,7.50,3.03],on:true},
+             {n:'No ingresantes',c:'var(--ink-2)',w:3,v:[6.78,4.28,2.62,2.37,2.73,1.79],on:true}];
+  function drawDes(){
+    const host=$('#chDes');host.innerHTML='';
+    const yrs=[2021,2022,2023,2024,2025,2026];
+    const W=640,H=320,x0=40,x1=530,yb=282,yt=16,max=22,X=i=>x0+12+(x1-x0-12)*i/5,Y=v=>yb-(v/max)*(yb-yt);
+    const s=svg(W,H,'Deserción por población 2021 a 2026');
+    [5,10,15,20].forEach(v=>{el('line',{x1:x0,x2:x1,y1:Y(v),y2:Y(v),stroke:'var(--rule)'},s);el('text',{x:x0-8,y:Y(v)+4,'text-anchor':'end','font-size':12,fill:'var(--ink-2)'},s,v+'%');});
+    const avg=DES[0].v.slice(0,5).reduce((a,b)=>a+b,0)/5;
+    if(DES[0].on){el('line',{x1:X(0),x2:X(5),y1:Y(avg),y2:Y(avg),stroke:'var(--ink-2)','stroke-width':1.5,'stroke-dasharray':'6 5'},s);
+      hov(el('rect',{x:X(0),y:Y(avg)-5,width:X(5)-X(0),height:10,fill:'transparent'},s),`Promedio marzo 2021–2025: ${fmt(avg,2)}%`);}
+    const ends=[];
+    DES.forEach(se=>{if(!se.on)return;
+      el('polyline',{class:'line-anim',pathLength:1,points:se.v.map((v,i)=>`${X(i)},${Y(v)}`).join(' '),fill:'none',stroke:se.c,'stroke-width':se.w,'stroke-linejoin':'round','stroke-linecap':'round'},s);
+      se.v.forEach((v,i)=>hov(el('circle',{cx:X(i),cy:Y(v),r:i===5?6.5:5,fill:i===5?'var(--paper)':se.c,stroke:se.c,'stroke-width':i===5?3:0},s),`${se.n} ${yrs[i]}${i===5?' (al 21/10)':''}: ${fmt(v,2)}%`));
+      ends.push({y:Y(se.v[5]),t:`${fmt(se.v[5],2)}%`,c:se.c==='var(--grey)'?'var(--ink)':se.c});});
+    ends.sort((a,b)=>a.y-b.y);for(let k=1;k<ends.length;k++)if(ends[k].y-ends[k-1].y<17)ends[k].y=ends[k-1].y+17;
+    ends.forEach(e=>el('text',{x:X(5)+12,y:e.y+5,'font-size':14,'font-weight':800,fill:e.c},s,e.t));
+    if(DES[0].on)el('text',{x:X(4),y:Y(12.56)+24,'text-anchor':'middle','font-size':12.5,'font-weight':600,fill:'var(--ink-2)'},s,'mínimo 12,56%');
+    yrs.forEach((y,i)=>el('text',{x:X(i),y:yb+24,'text-anchor':'middle','font-size':14,'font-weight':700,fill:i===5?'var(--ink-2)':'var(--ink)'},s,i===5?'2026*':y));
+    el('text',{x:x1+12,y:yb+24,'font-size':11.5,fill:'var(--ink-2)'},s,'* al 21/10');
+    el('line',{x1:x0,x2:x1,y1:yb,y2:yb,stroke:'var(--ink-2)'},s);host.appendChild(s);
+  }
+  const lg=$('#desLegend');
+  DES.forEach(se=>{const b=document.createElement('button');b.type='button';b.setAttribute('aria-pressed','true');b.innerHTML=`<i style="background:${se.c}"></i>${se.n}`;
+    b.addEventListener('click',()=>{se.on=!se.on;b.setAttribute('aria-pressed',String(se.on));drawDes();});lg.appendChild(b);});
+  const avgL=document.createElement('span');avgL.innerHTML='<i style="height:0;border-top:2px dashed var(--ink-2);border-radius:0"></i> Promedio marzo 2021–25';lg.appendChild(avgL);
+  function drawGrad(){
+    const host=$('#chGrad');host.innerHTML='';
+    const Rw=[['2021',11.89],['2022',16.22],['2023',17.85],['2024',20.31],['2025',22.37],['2026 1C',22.60,1]];
+    const W=640,H=310,x0=20,x1=630,yb=270,yt=40,max=25,Y=v=>yb-(v/max)*(yb-yt);
+    const s=svg(W,H,'Tasa de graduación 2021 a 2026');const gw=(x1-x0)/Rw.length,bw=gw*.62;
+    Rw.forEach(([y,v,p],i)=>{const x=x0+gw*i+(gw-bw)/2;
+      hov(el('rect',{class:'bar-anim',style:`animation-delay:${i*.08}s`,x,y:Y(v),width:bw,height:yb-Y(v),rx:2,fill:p?'transparent':'var(--good)','fill-opacity':p?0:(.45+i*.11),stroke:p?'var(--good)':'none','stroke-width':p?2.5:0,'stroke-dasharray':p?'6 4':'none'},s),`${y}: ${fmt(v,2)}%${p?' (parcial)':''}`);
+      el('text',{x:x+bw/2,y:Y(v)-10,'text-anchor':'middle','font-size':16,'font-weight':800,fill:p?'var(--ink-2)':'var(--ink)'},s,fmt(v,1)+'%');
+      el('text',{x:x+bw/2,y:yb+24,'text-anchor':'middle','font-size':14,'font-weight':700,fill:p?'var(--ink-2)':'var(--ink)'},s,y);});
+    el('line',{x1:x0,x2:x1,y1:yb,y2:yb,stroke:'var(--ink-2)'},s);host.appendChild(s);
+  }
+  const draws=[drawEnroll,drawDes,drawGrad],titles=['Ingreso · marzo y agosto, 2024–2026','Deserción por población, 2021–2026','Tasa de graduación, 2021–2026'];
+  function setInd(k){document.querySelectorAll('#indSeg button').forEach(b=>b.setAttribute('aria-pressed',String(+b.dataset.i===k)));
+    document.querySelectorAll('[data-ip]').forEach(p=>p.hidden=+p.dataset.ip!==k);$('#indTitle').textContent=titles[k];draws[k]();}
+  document.querySelectorAll('#indSeg button').forEach(b=>b.addEventListener('click',()=>setInd(+b.dataset.i)));
+  setInd(0);
+
+  /* ---------- simulador ---------- */
+  const base=15.91,avgM=15.874,coh=165,lo=7,hi=20,pct=v=>(v-lo)/(hi-lo)*100;
+  $('#gAvg').style.left=pct(avgM)+'%';$('#gAvgL').style.left=pct(avgM)+'%';
+  function sim(){const pp=+$('#simR').value,rate=base-pp;
+    $('#simPP').textContent=fmt(pp,1);$('#simKeep').textContent=Math.round(coh*pp/100);
+    $('#simRate').textContent=fmt(rate,1)+'%';
+    const below=rate<avgM-0.05;$('#simRate').className='v num '+(below?'t-good':'t-crit');
+    $('#simTxt').textContent=below?'tasa resultante, por debajo del promedio histórico':'tasa resultante, en el promedio histórico';
+    $('#gPin').style.left=pct(rate)+'%';}
+  $('#simR').addEventListener('input',sim);sim();
+
+  /* ---------- cronograma ---------- */
+  const T=[
+    {l:0,a:0,b:30,t:'Contacto cohorte + tutorías',k:1,obj:'Permanencia y experiencia',acc:'Contacto uno a uno con los 165 ingresantes de marzo; tutorías para los finales de diciembre; registro de motivos de riesgo.',area:'Bienestar Estudiantil, Orientación, Gestión de Alumnos',doc:'Docentes de Algoritmia, AED I y Matemática Discreta; tutores pares',res:'100% de la cohorte contactada y plan de apoyo activo'},
+    {l:0,a:60,b:90,t:'Diseño alerta temprana',obj:'Permanencia y experiencia',acc:'Definir señales (presentismo, entregas, primer parcial), circuito de contacto y derivación para 2027.',area:'Gestión de Alumnos y Sistemas, Bienestar',doc:'Docentes de 1° año',res:'Sistema listo para marzo 2027'},
+    {l:1,a:30,b:90,t:'Mensaje de carrera y Jornadas TI',obj:'Ingreso y posicionamiento',acc:'Mensaje basado en salidas laborales; jornadas abiertas con muestra de proyectos y talleres de IA y ciberseguridad.',area:'Marketing, Admisiones, Comunicación Institucional',doc:'Docentes de 1° y 4° año, estudiantes y graduados',res:'Mensaje aprobado, jornada realizada y base de interesados'},
+    {l:2,a:0,b:60,t:'Validar Google, Cisco y PMI',obj:'Propuesta académica y empleabilidad',acc:'Confirmar alcance, costos y vigencia de cada acuerdo antes de comunicarlo.',area:'Departamento, Vinculación con Empresas',doc:'Docentes de Redes, Proyectos y Datos',res:'Alcance de cada acuerdo documentado'},
+    {l:2,a:60,b:90,t:'Ruta e integrador',obj:'Propuesta académica y empleabilidad',acc:'Publicar la ruta de certificaciones y las orientaciones; confirmar la empresa del Proyecto Integrador Profesional.',area:'Departamento, Vinculación con Empresas, UADE Hub',doc:'Docentes del Seminario de Gestión y de Datos',res:'Ruta publicada y al menos una empresa confirmada'}];
+  const taskEls=[];
+  function showTask(j){const t=T[j];
+    $('#detail').innerHTML=`<span class="lbl" style="color:var(--accent)">${t.obj} · días ${t.a} a ${t.b}</span><h4>${t.t}</h4>
+      <dl><dt>Acciones</dt><dd>${t.acc}</dd><dt>Áreas</dt><dd>${t.area}</dd><dt>Docentes</dt><dd>${t.doc}</dd><dt>Resultado</dt><dd>${t.res}</dd></dl>`;
+    taskEls.forEach((r,k)=>r.setAttribute('stroke-width',k===j?3:0));}
+  (function(){
+    const lanes=['Permanencia','Ingreso','Empleabilidad'];
+    const W=760,H=270,x0=150,x1=750,y0=44,lh=64,bh=42,X=d=>x0+(x1-x0)*d/90;
+    const s=svg(W,H,'Cronograma del plan de 90 días');
+    ['Noviembre','Diciembre','Enero'].forEach((m,i)=>{el('rect',{x:X(30*i),y:y0-34,width:X(30)-X(0)-4,height:24,rx:2,fill:'var(--wash)'},s);el('text',{x:X(30*i)+10,y:y0-17,'font-size':13,'font-weight':700,fill:'var(--ink-2)'},s,m.toUpperCase());});
+    [30,60].forEach(d=>el('line',{x1:X(d)-2,x2:X(d)-2,y1:y0-6,y2:y0+lh*3,stroke:'var(--rule)','stroke-width':1.5},s));
+    const dx=X(47);
+    el('line',{x1:dx,x2:dx,y1:y0-6,y2:y0+lh*3+4,stroke:'var(--crit)','stroke-width':2.5,'stroke-dasharray':'4 4'},s);
+    el('circle',{cx:dx,cy:y0+lh*3+12,r:6,fill:'var(--crit)'},s);
+    el('text',{x:dx+12,y:y0+lh*3+17,'font-size':13,'font-weight':700,fill:'var(--crit)'},s,'Finales de diciembre');
+    lanes.forEach((n,i)=>el('text',{x:0,y:y0+lh*i+lh/2+6,'font-size':17,'font-weight':800,fill:'var(--ink)'},s,n));
+    T.forEach((t,j)=>{const y=y0+lh*t.l+(lh-bh)/2;
+      const g=el('g',{class:'task',tabindex:0,role:'button','aria-label':`${t.t}, días ${t.a} a ${t.b}`},s);
+      taskEls.push(el('rect',{x:X(t.a)+2,y,width:X(t.b)-X(t.a)-6,height:bh,rx:3,fill:t.k?'var(--accent)':'var(--accent-soft)',stroke:'var(--ink)','stroke-width':0},g));
+      el('text',{x:X(t.a)+12,y:y+bh/2+5,'font-size':14,'font-weight':700,fill:t.k?'#fff':'var(--ink)'},g,t.t);
+      g.addEventListener('click',()=>showTask(j));
+      g.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();showTask(j);}});});
+    $('#chPlan').appendChild(s);showTask(0);
+  })();
+
+  /* ---------- índice activo ---------- */
+  const links=[...document.querySelectorAll('.toc a')];
+  const secs=links.map(a=>document.querySelector(a.getAttribute('href')));
+  function spy(){let k=0;secs.forEach((s,i)=>{if(s.getBoundingClientRect().top<innerHeight*.35)k=i;});links.forEach((a,i)=>a.classList.toggle('on',i===k));}
+  addEventListener('scroll',spy,{passive:true});spy();
+})();
+</script>
+
+</body></html>
